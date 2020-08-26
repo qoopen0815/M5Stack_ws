@@ -39,7 +39,7 @@ And, initialize platformio.
 
 ```bash
 cd hoge_project
-platformio init --board=m5stack
+platformio init --board=m5stack-core-esp32
 ```
 
 ```bash
