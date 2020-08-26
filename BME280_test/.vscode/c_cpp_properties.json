@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/pi/Arduino/hardware/espressif/esp32/**"
+            ],
+            "forcedInclude": []
+        }
+    ]
+}

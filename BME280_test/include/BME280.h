@@ -3,13 +3,18 @@
 
 #include <Wire.h>
 
-// #define BME280_ADDR 0x76
-
 //アドレス指定
 #define BME280_ADDR 0x76
 #define CONFIG      0xF5
 #define CTRL_MEAS   0xF4
 #define CTRL_HUM    0xF2
+
+struct bme280_data
+{
+  float temperature;
+  float humidity;
+  float pressure;
+};
 
 class BME280
 {
@@ -19,6 +24,7 @@ public:
 
   void begin(void);
   void update(void);
+  void getSensorData(bme280_data &data);
   float readTemperature(void);
   float readHumidity(void);
   float readPressure(void);

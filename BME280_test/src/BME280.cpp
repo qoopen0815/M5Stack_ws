@@ -1,4 +1,3 @@
-#include <Wire.h>
 #include "BME280.h"
 
 BME280::BME280()
@@ -82,10 +81,6 @@ void BME280::begin(void)
 
 void BME280::update(void)
 {
-  // int32_t  temp_cal;
-  // uint32_t humi_cal, pres_cal;
-  // float temp, humi, pres;
-
   //BME280測定条件設定(1回測定後、スリープモード)
   Wire.beginTransmission(BME280_ADDR);//I2Cスレーブ「Arduino Uno」のデータ送信開始
   Wire.write(CTRL_MEAS);//測定条件設定
@@ -116,6 +111,14 @@ void BME280::update(void)
   pres = (float)pres_cal / 100.0;//気圧データを実際の値に計算
   temp = (float)temp_cal / 100.0;//温度データを実際の値に計算
   humi = (float)humi_cal / 1024.0;//湿度データを実際の値に計算
+}
+
+void BME280::getSensorData(bme280_data &data)
+{
+  update();
+  data.temperature = BME280::temp;
+  data.humidity = BME280::humi;
+  data.pressure = BME280::pres;
 }
 
 float BME280::readTemperature(void)
